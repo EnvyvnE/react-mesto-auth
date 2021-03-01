@@ -9,7 +9,7 @@ function EditProfilePopup({ isOpened, onClose, onUpdateUser }) {
     function handleNameChange(e) {
         setName(e.target.value);
     }
-    function HandleDescriptionChange(e) {
+    function handleDescriptionChange(e) {
         setDescription(e.target.value);
     }
     
@@ -29,11 +29,14 @@ function EditProfilePopup({ isOpened, onClose, onUpdateUser }) {
     }, [currentUser]);
     return (
         <>
-            <PopupWithForm onSubmit={handleSubmit} button='Сохранить' name='edit' title='Редактировать профиль' isOpened={isOpened} onClose={onClose}>
-                <input value={name || ''}  onChange={handleNameChange}  placeholder="Имя" id="input-name" name='profileNameInput' className="popup__input-item popup__input-item_el_name" type="text"
+            <PopupWithForm onSubmit={handleSubmit} button='Сохранить' name='edit' title='Редактировать профиль' 
+            isOpened={isOpened} onClose={onClose}>
+                <input value={name || ''}  onChange={handleNameChange}  placeholder="Имя" id="input-name" 
+                name='profileNameInput' className="popup__input-item popup__input-item_el_name" type="text"
                     required minLength="2" maxLength="40" />
                 <span id='input-name-error' className="error"></span>
-                <input value={description || ''} onChange={HandleDescriptionChange} placeholder="Вид деятельности" id='job-input' name='profileJobInput' className="popup__input-item popup__input-item_el_job" type="text"
+                <input value={description || ''} onChange={handleDescriptionChange} placeholder="Вид деятельности"
+                 id='job-input' name='profileJobInput' className="popup__input-item popup__input-item_el_job" type="text"
                     required minLength="2" maxLength="40" />
                 <span id='job-input-error' className="error"></span>
             </PopupWithForm>
