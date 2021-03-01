@@ -156,6 +156,9 @@ function App() {
                     setUsername(data.email);
                 } else {
                     setLoggedIn(false);
+                    setIsAlertPopupOpened(true);
+                    setRegisterStatus(false);
+                    setRegisterState(false);
                 }
             })
             
