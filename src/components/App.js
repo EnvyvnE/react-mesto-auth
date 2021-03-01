@@ -24,7 +24,7 @@ function App() {
     const [isSubmitDeleteOpened, setIsSubmitDeleteOpened] = React.useState(false);
     const [isAlertPopupOpened, setIsAlertPopupOpened] = React.useState(false)
     const [selectedCard, setSelectedCard] = React.useState(null);
-    const [currentUser, setCurrentUserInfo] = React.useState('');
+    const [currentUser, setCurrentUserInfo] = React.useState({});
     const [loggedIn, setLoggedIn] = React.useState(null);
     const [registerStatus, setRegisterStatus] = React.useState(false)
     const [registerState, setRegisterState] = React.useState(false);
@@ -152,8 +152,9 @@ function App() {
                 if (res.token) {
                     localStorage.setItem('jwt', res.token);
                     setLoggedIn(true);
-                    history.push('/');
                     setUsername(data.email);
+                    history.push('/');
+                    
                 } else {
                     setLoggedIn(false);
                     setIsAlertPopupOpened(true);
@@ -173,11 +174,13 @@ function App() {
     function handleTokenCheck(jwt) {
         auth.checkToken(jwt)
             .then((res) => {
+                setUsername(res.data.email)
                 if (res) {
                     setLoggedIn(true);
                     history.push('/');
                 }
             })
+           
     }
 
 
@@ -196,6 +199,7 @@ function App() {
         const jwt = localStorage.getItem('jwt');
         if (jwt) {
             handleTokenCheck(jwt);
+            
         }
     }, []);
 

@@ -27,6 +27,7 @@ export const authorize = ({ email, password }) => {
         .catch(err => console.log(err))
 };
 
+
 export const checkToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
